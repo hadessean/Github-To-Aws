@@ -71,8 +71,8 @@ Step 3: Configure the Workflow Configuration
     using the GitHub Action aws-actions/configure-aws-credentials@v4
 
 Publish Stage looks like this:
-
- " # https://github.com/aws-actions/configure-aws-credentials
+```text
+  # https://github.com/aws-actions/configure-aws-credentials
   publish:
     name: "publish: upload artifact to aws s3"
     needs: test
@@ -99,7 +99,8 @@ Publish Stage looks like this:
           ls -lrt ${{steps.download-artifact.outputs.download-path}}
           aws s3 sync ${{steps.download-artifact.outputs.download-path}} ${{ vars.AWS_S3_PATH }}
           aws s3 ls ${{ vars.AWS_S3_PATH }}
-          echo "🍏 This job's status is ${{ job.status }}." "
+          echo "🍏 This job's status is ${{ job.status }}."
+```
 
 Step 4: Execute the workflow
 
