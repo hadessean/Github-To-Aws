@@ -9,7 +9,7 @@ References: AWS documentation & configure-aws-credentials
 
     Audience:sts.amazonaws.com
     Provider URL: https://token.actions.githubusercontent.com
-![image](https://github.com)
+![image](imagess/githubtoaws1.webp)
 
 2. Creating a role for web identity or OIDC
 
