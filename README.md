@@ -9,3 +9,10 @@ References: AWS documentation & configure-aws-credentials
 
     Audience:sts.amazonaws.com
     Provider URL: https://token.actions.githubusercontent.com
+
+
+2. Creating a role for web identity or OIDC
+
+Create an AWS IAM role that you want to assume after authenticating through OIDC. This role will specify the permissions and policies for your AWS resources. For instance, github_s3_copy_action
+
+AWS_DEV_GITHUB_ACTION_ROLE = arn:aws:iam::XXXXXXXXX:role/github_s3_copy_action
