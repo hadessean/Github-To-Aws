@@ -1,8 +1,8 @@
-Step 1: Create an OIDC provider in your account
+**Step 1: Create an OIDC provider in your account**
 
 The first step in this process is to create an OIDC provider which you will use in the trust policy for the IAM role used in this action.
 
-1. Adding the identity provider to AWS
+**1. Adding the identity provider to AWS**
 
 Open AWS Console -> Identity and Access Management (IAM) -> Identity providers -> Add Provider
 
@@ -13,13 +13,13 @@ References: AWS documentation & configure-aws-credentials
 ![image](imagess/githubtoaws1.webp)
 ![image](imagess/githubtoaws2.webp)
 
-2. Creating a role for web identity or OIDC
+**2. Creating a role for web identity or OIDC**
 
 Create an AWS IAM role that you want to assume after authenticating through OIDC. This role will specify the permissions and policies for your AWS resources. For instance, github_s3_copy_action
 
 AWS_DEV_GITHUB_ACTION_ROLE = arn:aws:iam::XXXXXXXXX:role/github_s3_copy_action
 
-3. Configuring a role for GitHub OIDC identity provider
+**3. Configuring a role for GitHub OIDC identity provider**
 
 Define a trust relationship in the IAM role’s policy document that specifies the OIDC identity provider as a trusted entity. The trust relationship document specifies who can assume the role.
 
@@ -52,10 +52,10 @@ Example Trusted Policy
  ]
 }
 
-4. AWS Permissions
+**4. AWS Permissions**
 
 Add permissions to the IAM role to access AWS resources. For instance, AmazonS3FullAccess. You may attach AWS policies to the role.
-Step 2: Create secrets and configuration variables in GitHub
+**Step 2: Create secrets and configuration variables in GitHub**
 
 Securely store the IAM role created as Project Secrets and utilize Contexts to access these secrets in the workflow YAML file. Additionally, define variables for the S3 Path to copy artifacts to the GitHub repository.
 
@@ -66,7 +66,7 @@ AWS_DEV_GITHUB_ACTION_ROLE = arn:aws:iam::XXXXXXXXX:role/github_s3_copy_action
 
 AWS_S3_PATH = s3://<S3_BUCKET>
 
-Step 3: Configure the Workflow Configuration
+**Step 3: Configure the Workflow Configuration**
 
     using the GitHub Action aws-actions/configure-aws-credentials@v4
 
@@ -102,7 +102,7 @@ Publish Stage looks like this:
           echo "🍏 This job's status is ${{ job.status }}."
 ```
 
-Step 4: Execute the workflow
+**Step 4: Execute the workflow**
 
 Upon creating a pull_request & push, the workflow under .github/workflows/ is executed.
 
@@ -113,6 +113,6 @@ on:
     branches: main
 ![image](imagess/githubtoaws3.webp)
 
-Conclusion
+**Conclusion**
 
 The integration of GitHub Actions using OIDC provider with AWS enables the workflows to access resources in Amazon Web Services (AWS) without needing to store the AWS credentials as long-lived GitHub secrets. By eliminating the need to store long-term credentials and leveraging dynamic IAM roles, this approach significantly reduces the risk of credential exposure and enhances overall security posture. GitHub users benefit from streamlined access management, simplified credential rotation, and reduced maintenance overhead. Moreover, adherence to best practices such as zero-trust principles and least privilege access ensures a strong foundation for cloud security. In summary, the synergy between GitHub and AWS empowers organizations to achieve secure, efficient, and compliant access to cloud resources while mitigating potential vulnerabilities and maintaining operational agility.
